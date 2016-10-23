@@ -1,4 +1,5 @@
 package sample;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,14 +10,14 @@ public abstract class GameObject {
 
     ArrayList<GameObject> attackers = new ArrayList<GameObject>();
 
-    int x,y;
+    double x,y;
     double hp = 100;
 
-    public int getX(){
+    public double getX(){
         return  x;
     }
 
-    public int getY(){
+    public double getY(){
         return y;
     }
 
@@ -41,7 +42,7 @@ public abstract class GameObject {
 //    public GameObject(){
 //
 //    }
-    public GameObject(int x, int y){
+    public GameObject(double x, double y){
         this.x=x;
         this.y=y;
     }
