@@ -13,7 +13,11 @@ import javafx.scene.layout.GridPane;
  */
 public class Mob implements Attackable{
 
-    private Tower target = null;
+    Tower target = null;
+    GameFieldController gameFieldController;
+    double range = 20;
+    double dp=10;
+    double speed;
     private double hp = 100;
     private double x;
     private double y;
@@ -37,12 +41,57 @@ public class Mob implements Attackable{
         hp-=dp;
     }
 
-    public Mob(int x, int y){
+    public Mob(int x, int y, GameFieldController gameFieldController){
         this.x = x;
         this.y=y;
+        this.gameFieldController=gameFieldController;
     }
 
-    void findNextTarget(){
+    public void progress(){
+        if(target!=null){
+            if (target.getDistanceTo(this)<range) {
+                target.damage(dp);
+                if (target.getHP()<=0){
+                    target=null;
+                }
+            }
+            else
+            {
+                double angle = (target.getX()-this.x)/target.getDistanceTo(this);
+                x+=speed*Math.cos(angle);
+                y+=speed*Math.sin(angle);
+            }
+        }
+        else {
+            target=findNextTarget();
+            if(target!=null){
+                if (target.getDistanceTo(this)<range) {
+                    target.damage(dp);
+                    if (target.getHP()<=0){
+                        target=null;
+                    }
+                }
+                else
+                {
+                    double angle = (target.getX()-this.x)/target.getDistanceTo(this);
+                    x+=speed*Math.cos(angle);
+                    y+=speed*Math.sin(angle);
+                }
+            }
+            else {
+                this.x+=speed;
+            }
+        }
+    }
+    Tower findNextTarget(){
+        double minDist=0;
+        Tower nextTarget=null;
+        for(Tower tower:gameFieldController.getTowers()){
+            if (tower.getHP()>0&&nextTarget==null||tower.getDistanceTo(this)<minDist){
+                nextTarget = tower;
+            }
+        }
+        return nextTarget;
 
     }
 }

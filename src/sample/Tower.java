@@ -8,7 +8,6 @@ import java.util.ArrayList;
  */
 public abstract class Tower extends Button implements Attackable {
 
-    ArrayList<Tower> attackers = new ArrayList<Tower>();
 
     double x,y;
     double hp = 100;
@@ -34,11 +33,16 @@ public abstract class Tower extends Button implements Attackable {
 
 
     public Tower(double x, double y){
-        super("");
+        super();
         this.x=x;
         this.y=y;
 
     }
+
+    double getDistanceTo(Mob mob){
+        return Math.sqrt(Math.pow(this.x-mob.getX(),2)+Math.pow(this.y-mob.getY(),2));
+    }
+    abstract void progress();
 
 
 

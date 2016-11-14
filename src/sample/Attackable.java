@@ -10,5 +10,6 @@ public interface Attackable {
     public double getHP();
     public void damage(double dp);
 
+
     //void findNextTarget();
 }
