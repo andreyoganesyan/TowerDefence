@@ -22,7 +22,7 @@ public class SniperTower extends Tower{
     private static final double DP = 35;
     private static final double HP = 100;
     int charge = 100;
-    private static final Color BG_COLOR = Color.BLUE;
+    private static final Color BG_COLOR = Color.GREEN;
 
 
     SniperTower(double x, double y, GameFieldController gameFieldController){
@@ -33,8 +33,7 @@ public class SniperTower extends Tower{
     }
     @Override
     public void progress(){
-        charge= Math.min((charge+20), 100);
-        System.out.print(charge);
+        charge= Math.min((charge+4), 100);
         if(target!=null){
             if(charge==100) {
                 target.damage(DP);

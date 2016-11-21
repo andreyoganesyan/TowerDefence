@@ -23,7 +23,7 @@ public class Mob extends GameObject{
     private static final double RANGE = 20;
 
 
-    double speed = 5;
+    double speed = 1;
     private static final Color BG_COLOR = Color.RED;
 
 

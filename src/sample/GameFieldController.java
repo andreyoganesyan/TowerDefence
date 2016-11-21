@@ -1,8 +1,6 @@
 package sample;
 
-import javafx.animation.FadeTransition;
-import javafx.animation.ScaleTransition;
-import javafx.animation.Timeline;
+import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -109,6 +107,11 @@ public class GameFieldController {
                 towerField.setRowIndex(newButton, j);
             }
         }
+        Timeline timeline = new Timeline( new KeyFrame(
+                Duration.millis(16),
+                ae -> doAction()));
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
     }
 
     public void remove(GameObject gameObject){
