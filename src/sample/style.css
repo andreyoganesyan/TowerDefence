@@ -18,11 +18,35 @@
 -fx-background-radius: 15;
 }
 
-.snipertower {
+.tower {
  -fx-pref-width:30;
  -fx-pref-height: 30;
  -fx-background-radius: 15;
- -fx-background-color: rgba(255,0,0,1);
  -fx-border-color: rgba(255,255,255,0.5);
  -fx-border-radius: 15;
  }
+
+ .redbutton {
+  -fx-pref-width:30;
+  -fx-pref-height: 30;
+  -fx-background-radius: 15;
+  -fx-border-color: rgba(255,255,255,0.5);
+  -fx-background-color: red;
+  -fx-border-radius: 15;
+ }
+  .bluebutton {
+   -fx-pref-width:30;
+   -fx-pref-height: 30;
+   -fx-background-radius: 15;
+   -fx-border-color: rgba(255,255,255,0.5);
+   -fx-background-color: aqua;
+   -fx-border-radius: 15;
+  }
+   .greenbutton {
+    -fx-pref-width:30;
+    -fx-pref-height: 30;
+    -fx-background-radius: 15;
+    -fx-border-color: rgba(255,255,255,0.5);
+    -fx-background-color: green;
+    -fx-border-radius: 15;
+   }

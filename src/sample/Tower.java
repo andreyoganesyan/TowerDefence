@@ -19,7 +19,9 @@ public abstract class Tower extends GameObject {
 
 
     public Tower(double x, double y, double hp, Color bgColor, GameFieldController gameFieldController){
+
         super(x,y,hp,RADIUS, bgColor, gameFieldController);
+        getStyleClass().add("tower");
         this.x=x;
         this.y=y;
     }

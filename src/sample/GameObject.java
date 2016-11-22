@@ -21,6 +21,7 @@ public abstract class GameObject extends Ellipse {
     protected double y;
     protected FillTransition attackedTransition;
     protected GameObject target = null;
+    protected int charge;
 
     GameFieldController gameFieldController;
 

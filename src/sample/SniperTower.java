@@ -21,7 +21,6 @@ public class SniperTower extends Tower{
     private static final double RANGE=100;
     private static final double DP = 35;
     private static final double HP = 100;
-    int charge = 100;
     private static final Color BG_COLOR = Color.GREEN;
 
 
@@ -30,6 +29,7 @@ public class SniperTower extends Tower{
 
         gameFieldController.getTowers().add(this);
         this.getStyleClass().add("snipertower");
+        charge=50;
     }
     @Override
     public void progress(){

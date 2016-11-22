@@ -65,40 +65,10 @@ public class GameFieldController {
                 newButton.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
-                        Ellipse ellipse = new Ellipse(); {
-                            ellipse.setCenterX(newButton.getLayoutX()+newButton.getParent().getLayoutX()+newButton.getPrefWidth()/2);
-                            ellipse.setCenterY(newButton.getLayoutY()+newButton.getParent().getLayoutY()+newButton.getPrefHeight()/2);
-                            ellipse.setRadiusX(50.0f);
-                            ellipse.setRadiusY(50.0f);
-                            ellipse.setFill(Color.WHITE);
-                            ScaleTransition st = new ScaleTransition(Duration.millis(200), ellipse);
-
-                            st.setFromX(0.1);
-                            st.setFromY(0.1);
-                            st.setToX(1);
-                            st.setToY(1);
-                            st.play();
-                            ellipse.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                                @Override
-                                public void handle(MouseEvent event) {
-                                SniperTower newSniperTower = new SniperTower(newButton.getLayoutX()+newButton.getPrefWidth()/2+newButton.getParent().getLayoutX(), newButton.getLayoutY()+newButton.getPrefHeight()/2+newButton.getParent().getLayoutY(), gameFieldController);
-
-                                    towerField.getChildren().add(newSniperTower);
-                                    towerField.setRowIndex(newSniperTower, towerField.getRowIndex(newButton));
-                                    towerField.setColumnIndex(newSniperTower, towerField.getColumnIndex(newButton));
-                                    towerField.getChildren().remove(newButton);
-
-
-                                }
-                            });
-                        }
-                        rootPane.getChildren().add(ellipse);
-                        ellipse.setOnMouseExited(new EventHandler<MouseEvent>() {
-                            @Override
-                            public void handle(MouseEvent event) {
-                                rootPane.getChildren().remove(ellipse);
-                            }
-                        });
+                       TowerChoiceMenu towerChoiceMenu = new TowerChoiceMenu(newButton, gameFieldController);
+                        rootPane.getChildren().add(towerChoiceMenu);
+                        towerChoiceMenu.setLayoutX(newButton.getLayoutX()+newButton.getParent().getLayoutX()-towerChoiceMenu.getPrefWidth()*0.7/2);
+                        towerChoiceMenu.setLayoutY(newButton.getLayoutY()+newButton.getParent().getLayoutY()-towerChoiceMenu.getPrefHeight()*0.7/2);
                     }
                 });
                 //towerFieldArray[i][j] = newButton;
@@ -140,40 +110,11 @@ public class GameFieldController {
         newButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Ellipse ellipse = new Ellipse(); {
-                    ellipse.setCenterX(layoutX+newButton.getPrefWidth()/2);
-                    ellipse.setCenterY(layoutY+newButton.getPrefHeight()/2);
-                    ellipse.setRadiusX(50.0f);
-                    ellipse.setRadiusY(50.0f);
-                    ellipse.setFill(Color.WHITE);
-                    ScaleTransition st = new ScaleTransition(Duration.millis(200), ellipse);
+                TowerChoiceMenu towerChoiceMenu = new TowerChoiceMenu(newButton, gameFieldController);
+                rootPane.getChildren().add(towerChoiceMenu);
+                towerChoiceMenu.setLayoutX(newButton.getLayoutX()+newButton.getParent().getLayoutX()-towerChoiceMenu.getPrefWidth()*0.7/2);
+                towerChoiceMenu.setLayoutY(newButton.getLayoutY()+newButton.getParent().getLayoutY()-towerChoiceMenu.getPrefHeight()*0.7/2);
 
-                    st.setFromX(0.1);
-                    st.setFromY(0.1);
-                    st.setToX(1);
-                    st.setToY(1);
-                    st.play();
-                    ellipse.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-                            SniperTower newSniperTower = new SniperTower(layoutX+newButton.getPrefWidth()/2, layoutY+newButton.getPrefHeight()/2, gameFieldController);
-
-                            towerField.getChildren().add(newSniperTower);
-                            towerField.setRowIndex(newSniperTower, rowIndex);
-                            towerField.setColumnIndex(newSniperTower, columnIndex);
-                            towerField.getChildren().remove(newButton);
-
-
-                        }
-                    });
-                }
-                rootPane.getChildren().add(ellipse);
-                ellipse.setOnMouseExited(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        rootPane.getChildren().remove(ellipse);
-                    }
-                });
             }
         });
         return newButton;
