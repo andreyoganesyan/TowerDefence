@@ -34,19 +34,33 @@
   -fx-background-color: red;
   -fx-border-radius: 15;
  }
-  .bluebutton {
-   -fx-pref-width:30;
-   -fx-pref-height: 30;
-   -fx-background-radius: 15;
-   -fx-border-color: rgba(255,255,255,0.5);
-   -fx-background-color: aqua;
-   -fx-border-radius: 15;
-  }
-   .greenbutton {
-    -fx-pref-width:30;
-    -fx-pref-height: 30;
-    -fx-background-radius: 15;
-    -fx-border-color: rgba(255,255,255,0.5);
-    -fx-background-color: green;
-    -fx-border-radius: 15;
+ .bluebutton {
+-fx-pref-width:30;
+-fx-pref-height: 30;
+-fx-background-radius: 15;
+-fx-border-color: rgba(255,255,255,0.5);
+-fx-background-color: aqua;
+-fx-border-radius: 15;
+}
+.greenbutton {
+ -fx-pref-width:30;
+ -fx-pref-height: 30;
+ -fx-background-radius: 15;
+ -fx-border-color: rgba(255,255,255,0.5);
+ -fx-background-color: green;
+ -fx-border-radius: 15;
+ }
+   .thickmob {
+   -fx-border:3;
+   -fx-border-color:black;
+   }
+   .ragemeter {
+   -fx-fill:red;
+   -fx-border-color:black;
+   -fx-border-width:3;
+   -fx-border-radius:3;
+   }
+   .ragemeterlabel{
+   -fx-font-size:40;
+   -fx-text-fill:white;
    }

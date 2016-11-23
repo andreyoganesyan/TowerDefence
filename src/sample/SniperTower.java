@@ -40,6 +40,7 @@ public class SniperTower extends Tower{
                 charge=0;
                 if (target.getHP() <= 0) {
                     target = null;
+                    gameFieldController.rageMeter+=0.05;
                 }
             }
         }
@@ -51,6 +52,7 @@ public class SniperTower extends Tower{
                     target.damage(DP);
                     if (target.getHP() <= 0) {
                         target = null;
+                        gameFieldController.rageMeter+=0.001;
                     }
                 }
 

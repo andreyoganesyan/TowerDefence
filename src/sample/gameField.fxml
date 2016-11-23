@@ -5,8 +5,12 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.layout.StackPane?>
 <Pane fx:controller="sample.GameFieldController" xmlns:fx="http://javafx.com/fxml" fx:id="rootPane" prefWidth="640" prefHeight="320">
-    <Button text="Do the thing" layoutY="160" onAction="#doAction"/>
+    <Rectangle fx:id="rageMeterBar" height="40" styleClass="ragemeter" layoutY="10" layoutX="10"/>
+    <Label text="RAGE:" styleClass="ragemeterlabel" layoutX="20"/>
+    <Label fx:id="rageMeterLabel" styleClass="ragemeterlabel" layoutX="130"/>
     <GridPane alignment="center" hgap="10" vgap="10" fx:id="towerField" layoutX="360" layoutY="75">
 
 </GridPane>

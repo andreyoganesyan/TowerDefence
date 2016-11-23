@@ -6,21 +6,27 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Ellipse;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class GameFieldController {
 
+    int castleHP = 100;
+    double rageMeter = 0.5;
     final int NUM_ROWS = 8;
     final int NUM_COLUMNS = 12;
     ArrayList<Tower> towers = new ArrayList<Tower>();
     ArrayList<Mob> mobs = new ArrayList<Mob>();
+    static Random random = new Random();
 
     public ArrayList<Mob> getMobs() {
         return mobs;
@@ -34,6 +40,10 @@ public class GameFieldController {
     Pane rootPane;
     @FXML
     GridPane towerField;
+    @FXML
+    Rectangle rageMeterBar;
+    @FXML
+    Label rageMeterLabel;
 
     @FXML
     void doAction(){
@@ -43,20 +53,14 @@ public class GameFieldController {
         for(Tower tower:towers){
             tower.progress();
         }
+        createAMobMaybe();
+        rageMeter=Math.min(rageMeter+ 0.001, 1);
+        rageMeterBar.setWidth(rageMeter*400);
+        rageMeterLabel.setText(Integer.toString((int)(rageMeter*100)));
     }
     @FXML
     void initialize(){
         GameFieldController gameFieldController = this;
-        Mob mob = new Mob(320, 120, gameFieldController);
-        rootPane.getChildren().add(mob);
-        mob = new Mob(310, 50, gameFieldController);
-        rootPane.getChildren().add(mob);
-        mob = new Mob(300, 400, gameFieldController);
-        rootPane.getChildren().add(mob);
-        mob = new Mob(290, 320, gameFieldController);
-        rootPane.getChildren().add(mob);
-        mob = new Mob(330, 220, gameFieldController);
-        rootPane.getChildren().add(mob);
         for (int i = 0; i<NUM_COLUMNS; i++){
             for (int j = 0; j<NUM_ROWS; j++){
                 Button newButton = new Button();
@@ -78,7 +82,7 @@ public class GameFieldController {
             }
         }
         Timeline timeline = new Timeline( new KeyFrame(
-                Duration.millis(16),
+                Duration.millis(25),
                 ae -> doAction()));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
@@ -119,5 +123,29 @@ public class GameFieldController {
         });
         return newButton;
     }
+
+    void createAMobMaybe(){
+
+        if (random.nextDouble()*(rageMeter)>0.7){
+            Mob mob = null;
+            switch(random.nextInt(3)){
+                case 0: {
+                    mob = new ThickMob(-20, towerField.getLayoutY()+random.nextDouble()*towerField.getHeight(), this);
+                    break;
+                }
+                case 1: {
+                    mob = new Mob (-20, towerField.getLayoutY()+random.nextDouble()*towerField.getHeight(), this);
+                    break;
+                }
+                case 2: {
+                    mob = new StubbornMob(-20, towerField.getLayoutY()+random.nextDouble()*towerField.getHeight(), this);
+                    break;
+                }
+            }
+            rootPane.getChildren().add(mob);
+            rageMeter-=0.1;
+        }
+    }
+
 
 }

@@ -19,19 +19,26 @@ public class Mob extends GameObject{
 
     private final static double RADIUS = 10;
     private final static double HP = 100;
-    private static final double DP = 35;
+    protected static final double DP = 35;
     private static final double RANGE = 20;
 
 
     double speed = 1;
     private static final Color BG_COLOR = Color.RED;
 
+    protected Mob(double x, double y, GameFieldController gameFieldController, double hp, double speed){
+        super(x,y, hp, RADIUS, BG_COLOR, gameFieldController);
+        this.getStyleClass().add("mob");
+        this.speed=speed;
+        gameFieldController.getMobs().add(this);
+        if(getStroke()==null) setStroke(Color.WHITE);
+    }
 
-
-    public Mob(int x, int y, GameFieldController gameFieldController){
+    public Mob(double x, double y, GameFieldController gameFieldController){
         super(x,y, HP, RADIUS, BG_COLOR, gameFieldController);
         this.getStyleClass().add("mob");
         gameFieldController.getMobs().add(this);
+        if(getStroke()==null) setStroke(Color.WHITE);
 
     }
 
