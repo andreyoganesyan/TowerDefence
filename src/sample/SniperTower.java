@@ -6,6 +6,7 @@ import javafx.animation.Timeline;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.geometry.Insets;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -22,25 +23,25 @@ public class SniperTower extends Tower{
     private static final double DP = 35;
     private static final double HP = 100;
     private static final Color BG_COLOR = Color.GREEN;
+    private static final double MAX_CHARGE = 100;
+
 
 
     SniperTower(double x, double y, GameFieldController gameFieldController){
         super(x, y, HP, BG_COLOR,  gameFieldController);
-
-        gameFieldController.getTowers().add(this);
-        this.getStyleClass().add("snipertower");
         charge=50;
+
     }
     @Override
     public void progress(){
-        charge= Math.min((charge+4), 100);
+        charge= Math.min((charge+4), MAX_CHARGE);
+        dropShadow.setRadius(10*charge/MAX_CHARGE);
         if(target!=null){
-            if(charge==100) {
+            if(charge==MAX_CHARGE) {
                 target.damage(DP);
                 charge=0;
                 if (target.getHP() <= 0) {
                     target = null;
-                    gameFieldController.rageMeter+=0.05;
                 }
             }
         }
@@ -52,7 +53,6 @@ public class SniperTower extends Tower{
                     target.damage(DP);
                     if (target.getHP() <= 0) {
                         target = null;
-                        gameFieldController.rageMeter+=0.001;
                     }
                 }
 

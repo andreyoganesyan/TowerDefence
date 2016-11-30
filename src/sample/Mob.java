@@ -31,14 +31,16 @@ public class Mob extends GameObject{
         this.getStyleClass().add("mob");
         this.speed=speed;
         gameFieldController.getMobs().add(this);
-        if(getStroke()==null) setStroke(Color.WHITE);
+        setStroke(Color.WHITE);
     }
 
     public Mob(double x, double y, GameFieldController gameFieldController){
         super(x,y, HP, RADIUS, BG_COLOR, gameFieldController);
         this.getStyleClass().add("mob");
         gameFieldController.getMobs().add(this);
-        if(getStroke()==null) setStroke(Color.WHITE);
+        setStroke(Color.WHITE);
+        setStrokeWidth(2);
+
 
     }
 
@@ -63,6 +65,10 @@ public class Mob extends GameObject{
             {
                 this.x+=speed;
                 setCenterX(x);
+                if (x>1000){
+                    gameFieldController.attackCastle();
+                    gameFieldController.toBeRemoved.add(this);
+                }
             }
         }
     }

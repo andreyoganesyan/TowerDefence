@@ -21,12 +21,14 @@ import java.util.Random;
 public class GameFieldController {
 
     int castleHP = 100;
-    double rageMeter = 0.5;
+    double rageMeter =0;
     final int NUM_ROWS = 8;
     final int NUM_COLUMNS = 12;
     ArrayList<Tower> towers = new ArrayList<Tower>();
     ArrayList<Mob> mobs = new ArrayList<Mob>();
+    ArrayList<Mob> toBeRemoved = new ArrayList<Mob>();
     static Random random = new Random();
+    Timeline timeline;
 
     public ArrayList<Mob> getMobs() {
         return mobs;
@@ -44,9 +46,16 @@ public class GameFieldController {
     Rectangle rageMeterBar;
     @FXML
     Label rageMeterLabel;
+    @FXML
+    Rectangle HPBar;
+    @FXML
+    Label HPLabel;
 
     @FXML
     void doAction(){
+        for(Mob mob:toBeRemoved){
+            remove(mob);
+        }
         for(Mob mob:mobs){
             mob.progress();
         }
@@ -54,12 +63,15 @@ public class GameFieldController {
             tower.progress();
         }
         createAMobMaybe();
-        rageMeter=Math.min(rageMeter+ 0.001, 1);
+        rageMeter=Math.min(rageMeter+ 0.00005, 1);
         rageMeterBar.setWidth(rageMeter*400);
         rageMeterLabel.setText(Integer.toString((int)(rageMeter*100)));
+
     }
     @FXML
     void initialize(){
+        HPBar.setWidth(castleHP*4);
+        HPLabel.setText(Integer.toString(castleHP));
         GameFieldController gameFieldController = this;
         for (int i = 0; i<NUM_COLUMNS; i++){
             for (int j = 0; j<NUM_ROWS; j++){
@@ -81,8 +93,8 @@ public class GameFieldController {
                 towerField.setRowIndex(newButton, j);
             }
         }
-        Timeline timeline = new Timeline( new KeyFrame(
-                Duration.millis(25),
+        timeline = new Timeline( new KeyFrame(
+                Duration.millis(2.5),
                 ae -> doAction()));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
@@ -126,7 +138,7 @@ public class GameFieldController {
 
     void createAMobMaybe(){
 
-        if (random.nextDouble()*(rageMeter)>0.7){
+        if (random.nextDouble()*0.7 + rageMeter*0.1>0.7){
             Mob mob = null;
             switch(random.nextInt(3)){
                 case 0: {
@@ -143,7 +155,24 @@ public class GameFieldController {
                 }
             }
             rootPane.getChildren().add(mob);
-            rageMeter-=0.1;
+        }
+    }
+    void attackCastle(){
+        castleHP--;
+        HPBar.setWidth(castleHP*4);
+        HPLabel.setText(Integer.toString(castleHP));
+        if (castleHP==0){
+            timeline.stop();
+            Rectangle gameOverRect = new Rectangle(0,0,rootPane.getWidth(),rootPane.getHeight());
+            gameOverRect.setFill(Color.rgb(0,0,0,0.5));
+            rootPane.getChildren().add(gameOverRect);
+            Label gameOverLabel = new Label("GAME OVER");
+            gameOverLabel.getStyleClass().add("gameoverlabel");
+            gameOverLabel.setLayoutX(rootPane.getWidth()/2-160);
+            gameOverLabel.setLayoutY(rootPane.getHeight()/2-50);
+            rootPane.getChildren().add(gameOverLabel);
+
+
         }
     }
 

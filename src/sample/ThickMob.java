@@ -13,5 +13,6 @@ public class ThickMob extends Mob{
         super (x, y, gameFieldController, HP, SPEED);
         getStyleClass().add("thickmob");
         setStroke(Color.BLACK);
+        setStrokeWidth(1.5);
     }
 }

@@ -21,7 +21,7 @@ public abstract class GameObject extends Ellipse {
     protected double y;
     protected FillTransition attackedTransition;
     protected GameObject target = null;
-    protected int charge;
+    protected double charge;
 
     GameFieldController gameFieldController;
 
@@ -53,7 +53,12 @@ public abstract class GameObject extends Ellipse {
         attackedTransition.play();
 
         if (hp<0){
-            gameFieldController.remove(this);
+            if(this instanceof Mob){
+                gameFieldController.toBeRemoved.add((Mob)this);
+                gameFieldController.rageMeter+=0.005;
+            }
+            else gameFieldController.remove(this);
+
         }
     }
 

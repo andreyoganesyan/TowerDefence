@@ -64,3 +64,13 @@
    -fx-font-size:40;
    -fx-text-fill:white;
    }
+   .HPBar {
+      -fx-fill:green;
+      -fx-border-color:black;
+      -fx-border-width:3;
+      -fx-border-radius:3;
+      }
+      .gameoverlabel{
+      -fx-font-size:60;
+      -fx-text-fill:white;
+      }
