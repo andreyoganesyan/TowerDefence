@@ -7,14 +7,15 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.layout.StackPane?>
-<Pane fx:controller="sample.GameFieldController" xmlns:fx="http://javafx.com/fxml" fx:id="rootPane" prefWidth="640" prefHeight="320">
+<?import javafx.scene.layout.VBox?>
+<Pane fx:controller="sample.GameFieldController" styleClass="rootpane" xmlns:fx="http://javafx.com/fxml" fx:id="rootPane">
     <Rectangle fx:id="rageMeterBar" height="40" styleClass="ragemeter" layoutY="10" layoutX="10"/>
     <Label text="RAGE:" styleClass="ragemeterlabel" layoutX="20"/>
     <Label fx:id="rageMeterLabel" styleClass="ragemeterlabel" layoutX="130"/>
+    <Label fx:id="moneyLabel" styleClass="moneylabel" layoutX="450"/>
     <Rectangle fx:id="HPBar" height="40" styleClass="HPBar" layoutY="10" layoutX="560"/>
     <Label text="HP:" styleClass="ragemeterlabel" layoutX="570"/>
     <Label fx:id="HPLabel" styleClass="ragemeterlabel" layoutX="640"/>
-    <GridPane alignment="center" hgap="10" vgap="10" fx:id="towerField" layoutX="360" layoutY="75">
-
-</GridPane>
+    <GridPane alignment="center" hgap="10" vgap="10" fx:id="towerField" layoutX="360" layoutY="75"/>
+        <Button onAction="#decreaseRage" fx:id="ragebutton" layoutX="275" focusTraversable="false" layoutY="430" styleClass="ragebutton" prefWidth="400" prefHeight="50" textAlignment="CENTER"/>
 </Pane>

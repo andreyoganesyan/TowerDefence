@@ -13,7 +13,7 @@
 -fx-background-color: rgba(255,255,255,0.8);
 }
 #towerField {
--fx-background-color: #aaa;
+-fx-background-color: #333;
 -fx-padding: 10;
 -fx-background-radius: 15;
 }
@@ -64,13 +64,28 @@
    -fx-font-size:40;
    -fx-text-fill:white;
    }
+   .moneylabel {
+   -fx-font-size:40;
+    -fx-text-fill:yellow;
+    }
    .HPBar {
-      -fx-fill:green;
-      -fx-border-color:black;
-      -fx-border-width:3;
-      -fx-border-radius:3;
-      }
+   -fx-fill:green;
+   -fx-border-color:black;
+   -fx-border-width:3;
+   -fx-border-radius:3;
+   }
       .gameoverlabel{
       -fx-font-size:60;
       -fx-text-fill:white;
       }
+
+      .rootpane {
+      -fx-background-color: #222;
+      }
+.ragebutton{
+-fx-background-color:#555;
+-fx-font-size:20;
+-fx-text-fill:white;
+}
+.ragebutton:armed{
+-fx-background-color:#444;}

@@ -38,6 +38,7 @@ public class ElectricTower extends Tower{
             if (getDistanceTo(mob)<=RANGE){
                 mob.damage(dp*(1-getDistanceTo(mob)/RANGE));
                 charge=Math.max(0,charge-dp);
+                gameFieldController.rageMeter-=0.001;
             }
         }
 

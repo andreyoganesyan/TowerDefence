@@ -14,6 +14,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
+import sun.nio.cs.ext.MacHebrew;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -21,6 +22,7 @@ import java.util.Random;
 public class GameFieldController {
 
     int castleHP = 100;
+    double money = 100;
     double rageMeter =0;
     final int NUM_ROWS = 8;
     final int NUM_COLUMNS = 12;
@@ -29,6 +31,7 @@ public class GameFieldController {
     ArrayList<Mob> toBeRemoved = new ArrayList<Mob>();
     static Random random = new Random();
     Timeline timeline;
+    int rageDecreasePrice = 100;
 
     public ArrayList<Mob> getMobs() {
         return mobs;
@@ -50,6 +53,11 @@ public class GameFieldController {
     Rectangle HPBar;
     @FXML
     Label HPLabel;
+    @FXML
+    Label moneyLabel;
+
+    @FXML
+    Button ragebutton;
 
     @FXML
     void doAction(){
@@ -66,10 +74,14 @@ public class GameFieldController {
         rageMeter=Math.min(rageMeter+ 0.00005, 1);
         rageMeterBar.setWidth(rageMeter*400);
         rageMeterLabel.setText(Integer.toString((int)(rageMeter*100)));
+        money+=0.025;
+        moneyLabel.setText(Integer.toString((int)money));
+
 
     }
     @FXML
     void initialize(){
+        ragebutton.setText("DECREASE RAGE ("+rageDecreasePrice+")");
         HPBar.setWidth(castleHP*4);
         HPLabel.setText(Integer.toString(castleHP));
         GameFieldController gameFieldController = this;
@@ -94,7 +106,7 @@ public class GameFieldController {
             }
         }
         timeline = new Timeline( new KeyFrame(
-                Duration.millis(2.5),
+                Duration.millis(25),
                 ae -> doAction()));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
@@ -173,6 +185,16 @@ public class GameFieldController {
             rootPane.getChildren().add(gameOverLabel);
 
 
+        }
+    }
+
+    @FXML
+    void decreaseRage(){
+        if (money>=rageDecreasePrice) {
+            rageMeter = Math.max(rageMeter - 0.1, 0);
+            money-=rageDecreasePrice;
+            rageDecreasePrice+=25;
+            ragebutton.setText("DECREASE RAGE ("+rageDecreasePrice+")");
         }
     }
 

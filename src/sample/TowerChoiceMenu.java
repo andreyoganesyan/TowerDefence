@@ -44,14 +44,17 @@ public class TowerChoiceMenu extends Pane{
         redButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                SiegeTower newTower = new SiegeTower(button.getLayoutX()+button.getPrefWidth()/2+button.getParent().getLayoutX(), button.getLayoutY()+button.getPrefHeight()/2+button.getParent().getLayoutY(), gameFieldController);
+                if (gameFieldController.money>=30) {
+                    gameFieldController.money-=30;
+                    SiegeTower newTower = new SiegeTower(button.getLayoutX() + button.getPrefWidth() / 2 + button.getParent().getLayoutX(), button.getLayoutY() + button.getPrefHeight() / 2 + button.getParent().getLayoutY(), gameFieldController);
 
-                towerField.getChildren().add(newTower);
-                towerField.setRowIndex(newTower, towerField.getRowIndex(button));
-                towerField.setColumnIndex(newTower, towerField.getColumnIndex(button));
-                towerField.getChildren().remove(button);
-                towerChoiceMenu.setOnMouseExited(null);
-                rootPane.getChildren().remove(towerChoiceMenu);
+                    towerField.getChildren().add(newTower);
+                    towerField.setRowIndex(newTower, towerField.getRowIndex(button));
+                    towerField.setColumnIndex(newTower, towerField.getColumnIndex(button));
+                    towerField.getChildren().remove(button);
+                    towerChoiceMenu.setOnMouseExited(null);
+                    rootPane.getChildren().remove(towerChoiceMenu);
+                }
             }
         });
 
@@ -62,14 +65,17 @@ public class TowerChoiceMenu extends Pane{
         blueButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                ElectricTower newTower = new ElectricTower(button.getLayoutX()+button.getPrefWidth()/2+button.getParent().getLayoutX(), button.getLayoutY()+button.getPrefHeight()/2+button.getParent().getLayoutY(), gameFieldController);
+                if (gameFieldController.money>=30) {
+                    gameFieldController.money-=30;
+                    ElectricTower newTower = new ElectricTower(button.getLayoutX()+button.getPrefWidth()/2+button.getParent().getLayoutX(), button.getLayoutY()+button.getPrefHeight()/2+button.getParent().getLayoutY(), gameFieldController);
 
-                towerField.getChildren().add(newTower);
-                towerField.setRowIndex(newTower, towerField.getRowIndex(button));
-                towerField.setColumnIndex(newTower, towerField.getColumnIndex(button));
-                towerField.getChildren().remove(button);
-                towerChoiceMenu.setOnMouseExited(null);
-                rootPane.getChildren().remove(towerChoiceMenu);
+                    towerField.getChildren().add(newTower);
+                    towerField.setRowIndex(newTower, towerField.getRowIndex(button));
+                    towerField.setColumnIndex(newTower, towerField.getColumnIndex(button));
+                        towerField.getChildren().remove(button);
+                    towerChoiceMenu.setOnMouseExited(null);
+                    rootPane.getChildren().remove(towerChoiceMenu);
+                }
             }
         });
         Button greenButton = new Button();
@@ -79,14 +85,17 @@ public class TowerChoiceMenu extends Pane{
         greenButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                SniperTower newTower = new SniperTower(button.getLayoutX()+button.getPrefWidth()/2+button.getParent().getLayoutX(), button.getLayoutY()+button.getPrefHeight()/2+button.getParent().getLayoutY(), gameFieldController);
+                if (gameFieldController.money>=30) {
+                    gameFieldController.money -= 30;
+                    SniperTower newTower = new SniperTower(button.getLayoutX() + button.getPrefWidth() / 2 + button.getParent().getLayoutX(), button.getLayoutY() + button.getPrefHeight() / 2 + button.getParent().getLayoutY(), gameFieldController);
 
-                towerField.getChildren().add(newTower);
-                towerField.setRowIndex(newTower, towerField.getRowIndex(button));
-                towerField.setColumnIndex(newTower, towerField.getColumnIndex(button));
-                towerField.getChildren().remove(button);
-                towerChoiceMenu.setOnMouseExited(null);
-                rootPane.getChildren().remove(towerChoiceMenu);
+                    towerField.getChildren().add(newTower);
+                    towerField.setRowIndex(newTower, towerField.getRowIndex(button));
+                    towerField.setColumnIndex(newTower, towerField.getColumnIndex(button));
+                    towerField.getChildren().remove(button);
+                    towerChoiceMenu.setOnMouseExited(null);
+                    rootPane.getChildren().remove(towerChoiceMenu);
+                }
             }
         });
         setOnMouseExited(new EventHandler<MouseEvent>() {

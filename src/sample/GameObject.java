@@ -55,7 +55,8 @@ public abstract class GameObject extends Ellipse {
         if (hp<0){
             if(this instanceof Mob){
                 gameFieldController.toBeRemoved.add((Mob)this);
-                gameFieldController.rageMeter+=0.005;
+                gameFieldController.rageMeter+=0.0025;
+                gameFieldController.money+=10;
             }
             else gameFieldController.remove(this);
 
